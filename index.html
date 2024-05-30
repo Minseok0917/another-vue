@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <template id="counter-template">
+        My count is {{ count }}
+        <button @click="inc">++</button>
+      </template>
+      <div v-scope="Counter({ initialCount: 1 })"></div>
+      <div v-scope="Counter({ initialCount: 2 })"></div>
+
+      <div v-cloak v-cloak v-scope="Counter2({ initialCount: 1 })" @vue:mounted="mounted">
+        <p>{{ count }}</p>
+        <button @click="inc">increment</button>
+      </div>
+
+      <div v-cloak v-cloak v-scope="Counter2({ initialCount: 2 })">
+        <p>{{ count }}</p>
+        <button @click="inc">increment</button>
+      </div>
+
+      <div v-cloak v-cloak v-scope="{ localCount: 0 }">
+        <p>Global {{ store.count }}</p>
+        <button @click="store.inc">increment</button>
+
+        <p>Local {{ localCount }}</p>
+        <button @click="localCount++">increment</button>
+
+        {{helloName}}
+      </div>
+    </div>
+
+    <section id="info" v-scope v-cloak>
+      <h1>{{title}}</h1>
+    </section>
+
+    <script src="/resoucres/pages/home.js" type="module"></script>
+  </body>
+</html>
